@@ -13,12 +13,12 @@ const pool = new Pool({
   },
 });
 
-// CORS configuration
 const corsOptions = {
-  origin: 'https://my-chatbot-frontend-qc5qsx8s4-youser07s-projects.vercel.app', // Your Vercel frontend URL
+  origin: '*', // Allow all origins temporarily to fix the CORS issue
   methods: ['GET', 'POST', 'OPTIONS'], // Allow GET, POST, and OPTIONS methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
 };
+
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
