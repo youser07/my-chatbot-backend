@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 5000; // Dynamic port handling for deployment
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, // Use DATABASE_URL for Render
+  connectionString: 'postgresql://chat_bot_wzzl_user:99RofMuYCGb2KegoCbcv8q09k5W5IbuN@dpg-cu6k37ggph6c73c7jbu0-a.oregon-postgres.render.com/chat_bot_wzzl', // Directly use the external URL from Render
   ssl: {
     rejectUnauthorized: false, // Required for connecting securely to hosted PostgreSQL
   },
