@@ -4,18 +4,19 @@ const bodyParser = require('body-parser');
 const { Pool } = require('pg'); // PostgreSQL client
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000; // Dynamic port handling for deployment
 
-// Initialize PostgreSQL client
 const pool = new Pool({
-  user: 'postgres',  // Replace with your PostgreSQL username
-  host: 'localhost',
-  database: 'chatbot',
-  password: "password@372",  // Replace with your PostgreSQL password
-  port: 5432,
+  connectionString: process.env.DATABASE_URL, // Use DATABASE_URL for Render
+  ssl: {
+    rejectUnauthorized: false, // Required for connecting securely to hosted PostgreSQL
+  },
 });
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://my-chatbot-frontend-qc5qsx8s4-youser07s-projects.vercel.app', // Your Vercel frontend URL
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // API route to handle message sending
